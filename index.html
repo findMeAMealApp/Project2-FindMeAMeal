@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+          <script src="https://kit.fontawesome.com/c12dbf7dd5.js" crossorigin="anonymous"></script>
+          <!-- Connecting to  css stylesheeet -->
+          <link rel="stylesheet" href="style.css" />
+          <title>Meal Finder</title>
+     </head>
+     <body>
+          <div class="wrapper">
+               <h1>Find Me A Meal</h1>
+
+               <div class="flex">
+                    <form class="flex" id="submit">
+                         <input type="text" id="search" placeholder="Search for meals or keywords" />
+                         <button class="search-btn" type="submit">
+                              <i class="fas fa-search"></i>
+                         </button>
+                    </form>
+                    <button class="random-btn" id="random">
+                         <i class="fas fa-random"></i>
+                    </button>
+               </div>
+
+               <!-- This is where searched meal heading go dynamically from api -->
+               <div id="meal-heading"></div>
+
+               <!-- This is where  multiple meals will go dynamically -->
+               <div id="meals" class="meals"></div>
+
+               <!-- single meal -->
+               <div id="single-meal" class="single-meal"></div>
+          </div>
+
+          <!-- Connecting to java-script -->
+          <script src="script.js"></script>
+     </body>
+</html>
