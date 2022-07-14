@@ -1,0 +1,27 @@
+// Font Size:
+// base font size: 10px (62.5% of broswer default size)
+// h1: 20px
+// h2: 
+// h3:
+
+// Base Font Size
+html {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 62.5%;
+    /*1 rem = 10px*/
+}
+
+// Base font styles
+body,
+h1,
+form {
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+}
+
+.heading {
+    font-size: 3rem;
+}
+
+

@@ -255,10 +255,10 @@ template {
 }
 
 /* -- end of setup ---- */
-/* font-family: 'Montserrat', sans-serif; */
 html {
   font-family: "Montserrat", sans-serif;
-  font-size: 62.5%; /*1 rem = 10px*/
+  font-size: 62.5%;
+  /*1 rem = 10px*/
 }
 
 body,
@@ -267,6 +267,10 @@ form {
   margin: 0;
   padding: 0;
   font-size: 2rem;
+}
+
+.heading {
+  font-size: 3rem;
 }
 
 .wrapper {
@@ -292,22 +296,23 @@ form {
   display: flex;
 }
 
-body {
-  background-color: salmon;
-}
-
-input[type=text] {
-  width: 400px;
-}
-
 input,
 button {
   border: 0;
-  background-color: white;
-  border: 1px solid grey;
+  background-color: #fff;
+  border: 1px solid #737373;
   border-top-left-radius: 1.2rem;
   border-bottom-left-radius: 1.2rem;
   padding: 1rem 1rem;
+}
+
+/* font-family: 'Montserrat', sans-serif; */
+body {
+  background-color: #fa8072;
+}
+
+.heading {
+  margin: 10px 0;
 }
 
 .search-btn {
@@ -323,4 +328,25 @@ button {
   border-top-right-radius: 1.2rem;
   border-bottom-right-radius: 1.2rem;
   margin-left: 1rem;
+}
+
+input[type=text] {
+  width: 400px;
+  outline: none;
+  color: #333333;
+}
+input[type=text]::-webkit-input-placeholder {
+  color: #333333;
+}
+input[type=text]::-moz-placeholder {
+  color: #333333;
+}
+input[type=text]:-ms-input-placeholder {
+  color: #333333;
+}
+input[type=text]::-ms-input-placeholder {
+  color: #333333;
+}
+input[type=text]::placeholder {
+  color: #333333;
 }

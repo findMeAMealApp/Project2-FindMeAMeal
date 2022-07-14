@@ -1,0 +1,25 @@
+.search-btn {
+    border-left: 0;
+    border-top-right-radius: 1.2rem;
+    border-bottom-right-radius: 1.2rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.random-btn {
+    border: 0;
+    border-top-right-radius: 1.2rem;
+    border-bottom-right-radius: 1.2rem;
+    margin-left: 1rem;
+}
+
+input[type='text'] {
+    width: 400px;
+    outline: none;
+    color: $primaryFontColor;
+    &::placeholder {
+        color: $primaryFontColor;
+    }
+}
+
+
