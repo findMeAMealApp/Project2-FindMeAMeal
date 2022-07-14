@@ -263,9 +263,8 @@ html {
 
 body,
 h1,
-form {
-  margin: 0;
-  padding: 0;
+form,
+ul {
   font-size: 2rem;
 }
 
@@ -304,6 +303,23 @@ button {
   border-top-left-radius: 1.2rem;
   border-bottom-left-radius: 1.2rem;
   padding: 1rem 1rem;
+}
+
+body,
+h1,
+form,
+ul,
+img {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img {
+  width: 100%;
 }
 
 /* font-family: 'Montserrat', sans-serif; */
@@ -349,4 +365,14 @@ input[type=text]::-ms-input-placeholder {
 }
 input[type=text]::placeholder {
   color: #333333;
+}
+
+.meals {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+}
+.meals li {
+  border: 2px solid red;
 }

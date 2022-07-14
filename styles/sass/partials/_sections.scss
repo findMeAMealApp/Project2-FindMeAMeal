@@ -1,3 +1,5 @@
+// Form section (search meal section)
+
 .search-btn {
     border-left: 0;
     border-top-right-radius: 1.2rem;
@@ -21,5 +23,19 @@ input[type='text'] {
         color: $primaryFontColor;
     }
 }
+
+// recipies section
+.meals {
+    // border: 3px solid green;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+        li {
+            border: 2px solid red;
+            // display: inline-block;
+        }
+}
+
 
 

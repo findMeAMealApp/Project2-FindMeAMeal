@@ -21,3 +21,21 @@ button {
     border-bottom-left-radius: 1.2rem;
     padding: 1rem 1rem;
 }
+
+body,
+h1,
+form,
+ul,
+img {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+    
+}
+
+img {
+    width: 100%;
+}
