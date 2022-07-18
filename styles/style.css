@@ -371,12 +371,15 @@ input[type=text]::placeholder {
 }
 
 .meal {
+  border: 5px solid white;
   width: 180px;
   height: 180px;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .meal-info {

@@ -9,37 +9,42 @@ const search = document.getElementById('search'),
      singleMealEL = document.getElementById('single-meal')
 
 const mealApp = {}
-mealApp.url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${search.value}`
+// mealApp.url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${search.value}`
 
 function searchMeal(e) {
      e.preventDefault()
-     const term = search.value.trim()
+     const term = search.value
 
      //hit the api only if term is not empty
-     if (term) {
-          fetch(mealApp.url)
+     if (term.trim()) {
+          fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`)
                .then((response) => {
                     return response.json()
                })
                .then((jsonResponse) => {
-                    resultHeadingEl.innerHTML = `<h2>${term} meals: </h2>`
+                    //clears the search page
+                    mealsEl.innerHTML = ``
 
                     const meals = jsonResponse.meals
-                    meals.forEach((meal) => {
-                         // console.log(meal)
-                         const imgDiv = document.createElement('div')
-                         imgDiv.className = 'meal'
-                         imgDiv.innerHTML = `
+                    if (jsonResponse.meals === null) {
+                         resultHeadingEl.innerHTML = `<h2>try again</h2>`
+                    } else {
+                         resultHeadingEl.innerHTML = `<h2>${term} meals: </h2>`
+                         meals.forEach((meal) => {
+                              // console.log(meal)
+                              const imgDiv = document.createElement('div')
+                              imgDiv.className = 'meal'
+                              imgDiv.innerHTML = `
                                 <img src = "${meal.strMealThumb}">
                                 <div class = "meal-info">
                                       <h3> ${meal.strMeal}</h3>
-                                </div>                              
+                                </div>
                               `
-                         console.log(imgDiv);
 
-                         //appending the parent meals
-                         mealsEl.appendChild(imgDiv)
-                    })
+                              //appending the parent meals
+                              mealsEl.appendChild(imgDiv)
+                         })
+                    }
                })
 
           //clears the text value
