@@ -23,12 +23,12 @@ mealApp.displaySingleMeal = function (mealObject) {
      //since this will be a single meal, therefore we don't have to use appendChild
      singleMealEL.innerHTML = `
           <div class = "single-meal">
-               <h1 class="single-meal-heading"> ${mealObject.strMeal} </h1>
+               <h2 class="single-meal-heading"> ${mealObject.strMeal} </h2>
                <img class="single-meal-img" src="${mealObject.strMealThumb}" alt="${mealObject.strArea} Dish">
                <h3 class="cuisine-type">${mealObject.strArea} Cuisine </h3>
                <h2 class="prep-heading">How to Cook</h2>
                <p class="prepration">${mealObject.strInstructions} </p>
-               <h3 = "ing-heading">Ingredients Required</h3>               
+               <h3 class = "ing-heading">Ingredients Required</h3>               
           </div>
      `
 
@@ -45,7 +45,7 @@ mealApp.displaySingleMeal = function (mealObject) {
 
           //if ingredient is empty, then skip it
           if (mealObject[`strIngredient${i}`]) {
-               listItem.textContent = mealObject[`strIngredient${i}`] + '--' + mealObject[`strMeasure${i}`]
+               listItem.textContent = mealObject[`strIngredient${i}`] + ' - ' + mealObject[`strMeasure${i}`]
 
                ingredientContainer.appendChild(listItem)
                singleMealEL.appendChild(ingredientContainer)

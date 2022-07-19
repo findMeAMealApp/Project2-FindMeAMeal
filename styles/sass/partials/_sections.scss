@@ -64,3 +64,55 @@ input[type='text'] {
      opacity: 0;
      transition: 0.3s all;
 }
+
+.single-meal-heading {
+     //  border: 2px solid red;
+     margin-bottom: 50px;
+}
+
+.single-meal-img {
+     width: 500px;
+     border: 5px solid white;
+     border-radius: 15px;
+     margin-bottom: 50px;
+}
+
+.prep-heading,
+.ing-heading {
+     margin: 20px auto;
+     border: 0;
+     border-radius: 0;
+     padding: 5px;
+     border-bottom: 5px dotted white;
+     margin: 50px auto;
+     text-transform: uppercase;
+     width: 40%;
+}
+
+.prepration {
+     border: 5px dashed white;
+     font-family: 'Albert-Sans';
+     max-width: 700px;
+     text-align: center;
+     line-height: 1.5;
+     padding: 15px;
+}
+.flexMe {
+     display: flex;
+     // flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     flex-wrap: wrap;
+     margin-bottom: 50px;
+     max-width: 700px;
+}
+.flex-child {
+     border: 4px solid white;
+     border-radius: 10px;
+     padding: 5px;
+     margin: 5px 5px;
+     // text-align: left;
+     background-color: grey;
+     color: white;
+     font-family: 'Albert-Sans';
+}
