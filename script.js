@@ -9,79 +9,114 @@ const search = document.getElementById('search'),
      singleMealEL = document.getElementById('single-meal')
 
 const mealApp = {}
-// mealApp.url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${search.value}`
 
-function searchMeal(e) {
-     e.preventDefault()
-     const term = search.value
+mealApp.url = 'https://www.themealdb.com/api/json/v1/1/search.php'
 
-     //hit the api only if term is not empty
-     if (term.trim()) {
-          fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`)
-               .then((response) => {
-                    return response.json()
-               })
-               .then((jsonResponse) => {
-                    //clears the search page
-                    mealsEl.innerHTML = ``
+mealApp.init = function () {
+     submit.addEventListener('submit', mealApp.searchMeal)
+     random.addEventListener('click', mealApp.searchRandomMeal)
+}
 
-                    const meals = jsonResponse.meals
-                    if (jsonResponse.meals === null) {
-                         resultHeadingEl.innerHTML = `<h2>try again</h2>`
-                    } else {
-                         resultHeadingEl.innerHTML = `<h2>${term} meals: </h2>`
-                         meals.forEach((meal) => {
-                              // console.log(meal)
-                              const imgDiv = document.createElement('div')
-                              imgDiv.className = 'meal'
-                              imgDiv.innerHTML = `
-                                <img src = "${meal.strMealThumb}">
+mealApp.displaySingleMeal = function (mealObject) {
+     console.log(mealObject)
+
+     //since this will be a single meal, therefore we don't have to use appendChild
+     singleMealEL.innerHTML = `
+          <div class = "single-meal">
+               <h1 class="single-meal-heading"> ${mealObject.strMeal} </h1>
+               <img class="single-meal-img" src="${mealObject.strMealThumb}" alt="${mealObject.strArea} Dish">
+               <h3 class="cuisine-type">${mealObject.strArea} Cuisine </h3>
+               <h2 class="prep-heading">How to Cook</h2>
+               <p class="prepration">${mealObject.strInstructions} </p>
+               <h3 = "ing-heading">Ingredients Required</h3>               
+          </div>
+     `
+
+     //create a <ul> where we are going to append all the ingredients as <li>
+     const ingredientContainer = document.createElement('ul')
+     ingredientContainer.className = 'flexMe'
+     console.log(ingredientContainer)
+
+     //we know there are 20 ingredients only, so loop 20 times
+     for (let i = 1; i <= 20; i++) {
+          //create <li> for each ingredient
+          const listItem = document.createElement('li')
+          listItem.className = 'flex-child'
+
+          //if ingredient is empty, then skip it
+          if (mealObject[`strIngredient${i}`]) {
+               listItem.textContent = mealObject[`strIngredient${i}`] + '--' + mealObject[`strMeasure${i}`]
+
+               ingredientContainer.appendChild(listItem)
+               singleMealEL.appendChild(ingredientContainer)
+          }
+     }
+}
+
+mealApp.searchRandomMeal = function () {
+     mealApp.clearThePage()
+     fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+          .then((res) => res.json())
+          .then((data) => {
+               const meal = data.meals[0]
+               mealApp.displaySingleMeal(meal)
+          })
+}
+
+mealApp.displayMeals = function (mealsArray) {
+     mealsArray.forEach((meal) => {
+          // console.log('MY MEAL:   ', meal)
+          const imgDiv = document.createElement('div')
+          imgDiv.className = 'meal'
+          imgDiv.innerHTML = `
+                                <img src = "${meal.strMealThumb}" alt = "${meal.strArea}Dish">
                                 <div class = "meal-info">
                                       <h3> ${meal.strMeal}</h3>
                                 </div>
                               `
+          //appending the parent meals
+          mealsEl.appendChild(imgDiv)
+     })
+}
 
-                              //appending the parent meals
-                              mealsEl.appendChild(imgDiv)
-                         })
+mealApp.clearThePage = function () {
+     mealsEl.innerHTML = ``
+     resultHeadingEl.innerHTML = ``
+     singleMealEL.innerHTML = ``
+     search.value = ''
+}
+
+mealApp.searchMeal = function (e) {
+     e.preventDefault()
+     const term = search.value
+
+     //if term is not empty, then hit the end point
+     if (term.trim()) {
+          const url = new URL(mealApp.url)
+          url.search = new URLSearchParams({
+               s: term,
+          })
+          fetch(url)
+               .then((response) => response.json())
+               .then((jsonData) => {
+                    const mealsArray = jsonData.meals
+
+                    if (mealsArray) {
+                         mealApp.clearThePage()
+                         resultHeadingEl.innerHTML = `<h2>${term.charAt(0).toUpperCase() + term.slice(1)} Meals : </h2>`
+                         mealApp.displayMeals(mealsArray)
+                    } else {
+                         throw new Error('Please try again')
                     }
                })
-
-          //clears the text value
-          search.value = ''
+               .catch((err) => {
+                    mealApp.clearThePage()
+                    resultHeadingEl.innerHTML = `<h2>Invalid Search. ${err.message}</h2>`
+               })
      } else {
-          alert('Please provide your desired food')
+          mealApp.clearThePage()
+          alert('Please enter a meal of your choice or hit random button for a surprise meal!')
      }
 }
 
-submit.addEventListener('submit', searchMeal)
-
-// -------------------------------------------------
-// document.querySelector('form').addEventListener('submit', function (e) {
-//      e.preventDefault()
-//      search = document.querySelector('input')
-
-//      // API lets search meal by keyword
-//      fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search.value}`)
-//           .then((res) => res.json())
-//           .then((data) => {
-//                console.log('FETCHING MEAL BY KEYWORD', data)
-//           })
-// })
-
-// Namespace FindMeAMeal
-
-//  for searching meal by id
-// const mealId = 52850
-// fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
-//      .then((res) => res.json())
-//      .then((data) => {
-//           console.log('FETCHING MEAL BY ID', data)
-//      })
-
-// // for searching meal randomly
-// fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
-//      .then((res) => res.json())
-//      .then((data) => {
-//           console.log('FETCHING MEAL RANDOMLY', data)
-//      })
+mealApp.init()
