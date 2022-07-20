@@ -258,7 +258,6 @@ template {
 html {
   font-family: "Montserrat", sans-serif;
   font-size: 62.5%;
-  /*1 rem = 10px*/
 }
 
 body,
@@ -275,18 +274,17 @@ h2 {
 
 .cuisine-type,
 .prep-heading {
-  border: 5px inset white;
+  border: 5px inset #fff;
   padding: 50px;
   max-width: 500px;
   margin: 0 auto;
-  color: white;
+  color: #fff;
   border-radius: 20px;
   text-align: center;
 }
 
 .ing-heading {
-  border: 2px solid red;
-  color: white;
+  color: #fff;
 }
 
 .wrapper {
@@ -502,6 +500,19 @@ input[type=text]::placeholder {
   font-family: "Albert-Sans";
 }
 
+@media (max-width: 1120px) {
+  .meal:hover .meal-info {
+    font-size: 1.8rem;
+  }
+}
+@media (max-width: 750px) {
+  .meal {
+    width: calc(50% - 20px);
+  }
+  .meal:hover .meal-info {
+    font-size: 2.5rem;
+  }
+}
 @media (max-width: 650px) {
   form {
     width: 100%;
@@ -542,45 +553,45 @@ input[type=text]::placeholder {
   }
   input:hover::-webkit-input-placeholder, input:focus::-webkit-input-placeholder {
     font-weight: bold;
-    color: grey;
+    color: #737373;
     opacity: 1;
   }
   input:hover::-moz-placeholder, input:focus::-moz-placeholder {
     font-weight: bold;
-    color: grey;
+    color: #737373;
     opacity: 1;
   }
   input:hover:-ms-input-placeholder, input:focus:-ms-input-placeholder {
     font-weight: bold;
-    color: grey;
+    color: #737373;
     opacity: 1;
   }
   input:hover::-ms-input-placeholder, input:focus::-ms-input-placeholder {
     font-weight: bold;
-    color: grey;
+    color: #737373;
     opacity: 1;
   }
   input:hover::placeholder, input:focus::placeholder {
     font-weight: bold;
-    color: grey;
+    color: #737373;
     opacity: 1;
   }
   .search-btn,
 .random-btn {
     border-radius: 15px;
     margin: 0;
-    border: 4px solid grey;
+    border: 4px solid #737373;
     width: 30%;
     margin: 8px auto;
-    background-color: grey;
-    color: white;
+    background-color: #737373;
+    color: #fff;
     -webkit-transition: 0.3s all;
     transition: 0.3s all;
   }
   .search-btn:hover,
 .random-btn:hover {
-    background-color: white;
-    color: grey;
+    background-color: #fff;
+    color: #737373;
   }
   div.flex {
     -webkit-box-orient: vertical;
@@ -589,5 +600,45 @@ input[type=text]::placeholder {
             flex-direction: column;
     width: 100%;
     overflow: hidden;
+  }
+}
+@media (max-width: 500px) {
+  .meal {
+    width: calc(100% - 20px);
+  }
+  .meal:hover .meal-info {
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 350px) {
+  input[type=text]::-webkit-input-placeholder {
+    font-size: 1.2rem;
+  }
+  input[type=text]::-moz-placeholder {
+    font-size: 1.2rem;
+  }
+  input[type=text]:-ms-input-placeholder {
+    font-size: 1.2rem;
+  }
+  input[type=text]::-ms-input-placeholder {
+    font-size: 1.2rem;
+  }
+  input[type=text]::placeholder {
+    font-size: 1.2rem;
+  }
+  input[type=text]:hover::-webkit-input-placeholder, input[type=text]:focus::-webkit-input-placeholder {
+    font-size: 1.2rem;
+  }
+  input[type=text]:hover::-moz-placeholder, input[type=text]:focus::-moz-placeholder {
+    font-size: 1.2rem;
+  }
+  input[type=text]:hover:-ms-input-placeholder, input[type=text]:focus:-ms-input-placeholder {
+    font-size: 1.2rem;
+  }
+  input[type=text]:hover::-ms-input-placeholder, input[type=text]:focus::-ms-input-placeholder {
+    font-size: 1.2rem;
+  }
+  input[type=text]:hover::placeholder, input[type=text]:focus::placeholder {
+    font-size: 1.2rem;
   }
 }

@@ -1,14 +1,7 @@
-// Font Size:
-// base font size: 10px (62.5% of broswer default size)
-// h1: 20px
-// h2:
-// h3:
-
 // Base Font Size
 html {
      font-family: 'Montserrat', sans-serif;
      font-size: 62.5%;
-     /*1 rem = 10px*/
 }
 
 // Base font styles
@@ -25,16 +18,15 @@ h2 {
 }
 .cuisine-type,
 .prep-heading {
-     border: 5px inset white;
+     border: 5px inset $inputBackgroundColor;
      padding: 50px;
      max-width: 500px;
      margin: 0 auto;
-     color: white;
+     color: $inputBackgroundColor;
      border-radius: 20px;
      text-align: center;
 }
 
 .ing-heading {
-     border: 2px solid red;
-     color: white;
+     color: $inputBackgroundColor;
 }

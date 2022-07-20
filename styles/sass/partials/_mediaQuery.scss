@@ -1,6 +1,22 @@
+@media (max-width: 1120px) {
+     .meal {
+          &:hover .meal-info {
+               font-size: 1.8rem;
+          }
+     }
+}
+
+@media (max-width: 750px) {
+     .meal {
+          width: calc(100% / 2 - 20px);
+          &:hover .meal-info {
+               font-size: 2.5rem;
+          }
+     }
+}
+
 @media (max-width: 650px) {
      form {
-          //   border: 3px solid blue;
           width: 100%;
           display: flex;
           flex-direction: column;
@@ -18,7 +34,7 @@
           &:focus {
                &::placeholder {
                     font-weight: bold;
-                    color: grey;
+                    color: $borderColor;
                     opacity: 1;
                }
           }
@@ -28,23 +44,46 @@
           //   border: 2px solid magenta;
           border-radius: 15px;
           margin: 0;
-          border: 4px solid grey;
+          border: 4px solid $borderColor;
           width: 30%;
           margin: 8px auto;
-          background-color: grey;
-          color: white;
+          background-color: $borderColor;
+          color: $inputBackgroundColor;
           transition: 0.3s all;
 
           &:hover {
-               background-color: white;
-               color: grey;
+               background-color: $inputBackgroundColor;
+               color: $borderColor;
           }
      }
 
      div.flex {
-          //   border: 4px solid yellow;
           flex-direction: column;
           width: 100%;
           overflow: hidden;
+     }
+}
+@media (max-width: 500px) {
+     .meal {
+          width: calc(100% - 20px);
+
+          &:hover .meal-info {
+               font-size: 2.5rem;
+          }
+     }
+}
+
+@media (max-width: 350px) {
+     input[type='text'] {
+          &::placeholder {
+               font-size: 1.2rem;
+          }
+
+          &:hover,
+          &:focus {
+               &::placeholder {
+                    font-size: 1.2rem;
+               }
+          }
      }
 }
