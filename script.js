@@ -1,6 +1,5 @@
-// Find Me A Meal App
+// grab DOM elements
 
-// Global Variables
 const search = document.getElementById('search'),
      random = document.getElementById('random'),
      submit = document.getElementById('submit'),
@@ -10,16 +9,15 @@ const search = document.getElementById('search'),
 
 const mealApp = {}
 
-mealApp.url = 'https://www.themealdb.com/api/json/v1/1/search.php'
+mealApp.baseUrl = 'https://www.themealdb.com'
 
 mealApp.init = function () {
      submit.addEventListener('submit', mealApp.searchMeal)
      random.addEventListener('click', mealApp.searchRandomMeal)
+     mealsEl.addEventListener('click', mealApp.generateMealId)
 }
 
 mealApp.displaySingleMeal = function (mealObject) {
-     console.log(mealObject)
-
      //since this will be a single meal, therefore we don't have to use appendChild
      singleMealEL.innerHTML = `
           <div class = "single-meal">
@@ -35,7 +33,6 @@ mealApp.displaySingleMeal = function (mealObject) {
      //create a <ul> where we are going to append all the ingredients as <li>
      const ingredientContainer = document.createElement('ul')
      ingredientContainer.className = 'flexMe'
-     console.log(ingredientContainer)
 
      //we know there are 20 ingredients only, so loop 20 times
      for (let i = 1; i <= 20; i++) {
@@ -55,7 +52,9 @@ mealApp.displaySingleMeal = function (mealObject) {
 
 mealApp.searchRandomMeal = function () {
      mealApp.clearThePage()
-     fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+     const url = new URL(mealApp.baseUrl)
+     url.pathname = '/api/json/v1/1/random.php'
+     fetch(url)
           .then((res) => res.json())
           .then((data) => {
                const meal = data.meals[0]
@@ -65,18 +64,42 @@ mealApp.searchRandomMeal = function () {
 
 mealApp.displayMeals = function (mealsArray) {
      mealsArray.forEach((meal) => {
-          // console.log('MY MEAL:   ', meal)
           const imgDiv = document.createElement('div')
           imgDiv.className = 'meal'
           imgDiv.innerHTML = `
                                 <img src = "${meal.strMealThumb}" alt = "${meal.strArea}Dish">
-                                <div class = "meal-info">
+                                <div class = "meal-info" meal-id="${meal.idMeal}">
                                       <h3> ${meal.strMeal}</h3>
                                 </div>
                               `
           //appending the parent meals
           mealsEl.appendChild(imgDiv)
      })
+}
+
+mealApp.generateMealId = function (e) {
+     let id
+     if (e.target.tagName === 'H3') {
+          id = e.target.parentNode.attributes[1].value
+     } else {
+          id = e.target.attributes['meal-id'].value
+     }
+     mealApp.searchMealById(Number(id))
+}
+
+mealApp.searchMealById = function (id) {
+     mealApp.clearThePage()
+     const url = new URL(mealApp.baseUrl)
+     url.pathname = '/api/json/v1/1/lookup.php'
+     url.search = new URLSearchParams({
+          i: id,
+     })
+     fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+               const meal = data.meals[0]
+               mealApp.displaySingleMeal(meal)
+          })
 }
 
 mealApp.clearThePage = function () {
@@ -92,7 +115,8 @@ mealApp.searchMeal = function (e) {
 
      //if term is not empty, then hit the end point
      if (term.trim()) {
-          const url = new URL(mealApp.url)
+          const url = new URL(mealApp.baseUrl)
+          url.pathname = '/api/json/v1/1/search.php'
           url.search = new URLSearchParams({
                s: term,
           })
