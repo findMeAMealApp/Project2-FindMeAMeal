@@ -171,7 +171,7 @@ mealApp.searchMeal = function (e) {
                })
      } else {
           mealApp.clearThePage()
-          alert('Please enter a meal of your choice e.g. chicken, beef, vegetarian etc OR  hit random button for a surprise meal!')
+          alert('Please enter a meal of your choice e.g. chicken, beef, vegetarian etc OR hit random button for a surprise meal !')
      }
 }
 
