@@ -49,7 +49,6 @@ mealApp.displaySingleMeal = function (mealObject) {
           }
      }
 }
-
 mealApp.searchRandomMeal = function () {
      mealApp.clearThePage()
      const url = new URL(mealApp.baseUrl)
