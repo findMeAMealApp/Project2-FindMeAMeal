@@ -78,13 +78,27 @@ mealApp.displayMeals = function (mealsArray) {
 }
 
 mealApp.generateMealId = function (e) {
+     /**
+      * The unique id is fetched depending on where the user clicked.
+      * if user click on img(i.e. DIV) , then extract the id and save it in 'id' variable
+      * if user click on title of img (i.e. H3), then extract the id accodingly and save it in id variable
+      * if user click between the image (i.e. gutter i.e. DIV), then notify the user, and request the user to click on the image instead
+      * use that id and call searchMealById()
+      * note: id is of type string, we casted it into a integer Number(string variable)
+      */
+
      let id
      if (e.target.tagName === 'H3') {
           id = e.target.parentNode.attributes[1].value
+          mealApp.searchMealById(Number(id))
      } else {
-          id = e.target.attributes['meal-id'].value
+          if (e.target.attributes['meal-id']) {
+               id = e.target.attributes['meal-id'].value
+               mealApp.searchMealById(Number(id))
+          } else {
+               document.querySelector('h2').innerHTML = `<h2>Please Click on the Image</h2>`
+          }
      }
-     mealApp.searchMealById(Number(id))
 }
 
 mealApp.searchMealById = function (id) {
@@ -114,20 +128,22 @@ mealApp.searchMeal = function (e) {
      const term = search.value
 
      //if term is not empty, then hit the end point
+     //trim() function take of extra space on both side of input string
      if (term.trim()) {
           const url = new URL(mealApp.baseUrl)
           url.pathname = '/api/json/v1/1/search.php'
           url.search = new URLSearchParams({
-               s: term,
+               s: term.trim(),
           })
           fetch(url)
                .then((response) => response.json())
                .then((jsonData) => {
                     const mealsArray = jsonData.meals
 
+                    //the innerHTML makes first letter of searched term capital
                     if (mealsArray) {
                          mealApp.clearThePage()
-                         resultHeadingEl.innerHTML = `<h2>${term.charAt(0).toUpperCase() + term.slice(1)} Meals : </h2>`
+                         resultHeadingEl.innerHTML = `<h2>${term.trim().charAt(0).toUpperCase() + term.trim().slice(1)} Meals : </h2>`
                          mealApp.displayMeals(mealsArray)
                     } else {
                          throw new Error('Please try again')
@@ -139,7 +155,7 @@ mealApp.searchMeal = function (e) {
                })
      } else {
           mealApp.clearThePage()
-          alert('Please enter a meal of your choice or hit random button for a surprise meal!')
+          alert('Please enter a meal of your choice e.g. chicken, beef, vegetarian etc OR  hit random button for a surprise meal!')
      }
 }
 

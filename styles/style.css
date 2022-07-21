@@ -302,6 +302,7 @@ h2 {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
+  overflow: hidden;
 }
 
 .flex {
