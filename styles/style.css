@@ -392,6 +392,7 @@ input[type=text]::placeholder {
 
 .meals {
   margin-top: 20px;
+  margin-bottom: 70px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -421,7 +422,7 @@ input[type=text]::placeholder {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   opacity: 1;
-  color: white;
+  color: #fff;
 }
 
 .meal-info {
@@ -487,18 +488,32 @@ input[type=text]::placeholder {
           justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   max-width: 700px;
 }
 
 .flex-child {
-  border: 4px solid white;
+  border: 4px solid #fff;
   border-radius: 10px;
   padding: 5px;
   margin: 5px 5px;
-  background-color: grey;
-  color: white;
+  background-color: #737373;
+  color: #fff;
   font-family: "Albert-Sans";
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer p {
+  background-color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 10px;
+  font-weight: bolder;
+  color: #fa8072;
 }
 
 @media (max-width: 1120px) {
@@ -609,6 +624,9 @@ input[type=text]::placeholder {
   }
   .meal:hover .meal-info {
     font-size: 2.5rem;
+  }
+  .footer p {
+    font-size: 1.6rem;
   }
 }
 @media (max-width: 350px) {

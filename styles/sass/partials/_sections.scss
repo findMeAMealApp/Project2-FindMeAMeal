@@ -30,6 +30,7 @@ input[type='text'] {
 .meals {
      // border: 3px solid green;
      margin-top: 20px;
+     margin-bottom: 70px;
      display: flex;
      justify-content: center;
      align-items: center;
@@ -50,7 +51,7 @@ input[type='text'] {
           height: 100%;
           background-color: rgba($color: black, $alpha: 0.7);
           opacity: 1;
-          color: white;
+          color: $inputBackgroundColor;
      }
 }
 .meal-info {
@@ -105,16 +106,16 @@ input[type='text'] {
      align-items: center;
      justify-content: center;
      flex-wrap: wrap;
-     margin-bottom: 50px;
+     margin-bottom: 100px;
      max-width: 700px;
 }
 .flex-child {
-     border: 4px solid white;
+     border: 4px solid $inputBackgroundColor;
      border-radius: 10px;
      padding: 5px;
      margin: 5px 5px;
      // text-align: left;
-     background-color: grey;
-     color: white;
+     background-color: $borderColor;
+     color: $inputBackgroundColor;
      font-family: 'Albert-Sans';
 }
