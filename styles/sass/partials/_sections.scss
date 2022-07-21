@@ -38,7 +38,7 @@ input[type='text'] {
 }
 
 .meal {
-     border: 5px solid white;
+     border: 5px solid $inputBackgroundColor;
      width: calc(100% / 4 - 20px);
      position: relative;
      display: flex;
@@ -59,7 +59,7 @@ input[type='text'] {
      display: flex;
      justify-content: center;
      align-items: center;
-
+     padding: 20px;
      width: 100%;
      height: 100%;
      opacity: 0;
@@ -67,14 +67,13 @@ input[type='text'] {
 }
 
 .single-meal-heading {
-     //  border: 2px solid red;
      margin-bottom: 50px;
 }
 
 .single-meal-img {
      width: 100%;
      max-width: 500px;
-     border: 5px solid white;
+     border: 5px solid $inputBackgroundColor;
      border-radius: 15px;
      margin-bottom: 50px;
 }
@@ -85,15 +84,14 @@ input[type='text'] {
      border: 0;
      border-radius: 0;
      padding: 5px;
-     border-bottom: 5px dotted white;
+     border-bottom: 5px dotted $inputBackgroundColor;
      margin: 50px auto;
      text-transform: uppercase;
-     // width: 40%;
      width: 100%;
 }
 
 .prepration {
-     border: 5px dashed white;
+     border: 5px dashed $inputBackgroundColor;
      font-family: 'Albert-Sans';
      max-width: 700px;
      text-align: center;
@@ -114,7 +112,6 @@ input[type='text'] {
      border-radius: 10px;
      padding: 5px;
      margin: 5px 5px;
-     // text-align: left;
      background-color: $borderColor;
      color: $inputBackgroundColor;
      font-family: 'Albert-Sans';
